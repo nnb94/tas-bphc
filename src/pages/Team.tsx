@@ -1,8 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import heroImg from "@/assets/hero-mountains.jpg";
-import nirvanPhoto from "@/assets/team/nirvan.jpeg";
-import vishPhoto from "@/assets/team/vishesh.jpeg";
 import bhavitPhoto from "@/assets/team/bhavit.jpeg";
 import defaultPhoto from "@/assets/team/default.avif";
 import brundaPhoto from "@/assets/team/brunda.jpeg";
@@ -12,8 +10,6 @@ import kanishkPhoto from "@/assets/team/kanishk.jpeg";
 import ojasviPhoto from "@/assets/team/ojasvi.jpeg";
 import mihirPhoto from "@/assets/team/mihir.jpeg";
 import arnavPhoto from "@/assets/team/arnav.jpeg";
-import harshPhoto from "@/assets/team/harsh.jpeg";
-import paramPhoto from "@/assets/team/param.jpeg";
 import vaishnaviPhoto from "@/assets/team/vaishnavi.jpeg";
 
 interface TeamMember {
@@ -25,18 +21,14 @@ interface TeamMember {
 
 
 const coreTeam: TeamMember[] = [
-  { name: "Harshvardhan Mundada", role: "President", photo: harshPhoto },
-  { name: "Nirvan Bhagabati", role: "Trek Leader", photo: nirvanPhoto },
-  { name: "Vishesh Agarwal", role: "Trek Leader", photo: vishPhoto },
-  { name: "Param Patel", role: "Media Head", photo: paramPhoto },
+  { name: "Amogh Soma", role: "President", photo: defaultPhoto },
+  { name: "Nishant Maggirwar", role: "Trek Leader", photo: nishantPhoto },
+  { name: "Brunda SK", role: "Publicity Head", photo: brundaPhoto },
+  { name: "Suryanath A", role: "Video Editing", photo: defaultPhoto },
 ];
 
 const managementTeam: TeamMember[] = [
   { name: "Bhavit Bansal", role: "Management ", photo: bhavitPhoto },
-  { name: "Brunda SK", role: "Management", photo: brundaPhoto },
-  { name: "Nishant Maggirwar", role: "Management", photo: nishantPhoto },
-  { name: "Amogh Soma", role: "Management", photo: defaultPhoto },
-  { name: "Suryanath A", role: "Video Editing", photo: defaultPhoto },
   { name: "Saum Abeer Khan", role: "Management", photo: saumPhoto },
   { name: "Kanishk Daga", role: "Management", photo: kanishkPhoto },
   { name: "Ojasvi Cheruku", role: "Management", photo: ojasviPhoto },

@@ -1,21 +1,16 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Mountain, Users, Award, Compass, ArrowRight, MapPin, TrendingUp, Calendar } from "lucide-react";
+import { Mountain, Users, Award, Compass, ArrowRight, MapPin, TrendingUp } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BookSlotDialog from "@/components/BookSlotDialog";
 import heroImage from "@/assets/hero-mountains.jpg";
 import kedarkanthaImg from "@/assets/kedarkantha.jpeg";
 import brahmatalImg from "@/assets/brahmatal.jpeg";
 import valleyImg from "@/assets/valley-of-flowers.jpeg";
 import hamptaImg from "@/assets/hampta-pass.jpg";
-import rupinPassImg from "@/assets/rupin-pass.jpg";
 import BITSLogo from "@/assets/BITS_Pilani-Logo.png";
-import { MessageCircle, FileText } from "lucide-react";
 
 const Index = () => {
-  const [bookOpen, setBookOpen] = useState(false);
   const featuredTreks = [ 
     {
       name: "Kedarkantha",
@@ -141,89 +136,6 @@ const Index = () => {
             </Link>
           </div>
         </div>
-      </section>
-
-      {/* Upcoming Trek */}
-      <section className="section-padding bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
-              <span className="inline-block px-6 py-2.5 rounded-full bg-accent/10 text-accent text-lg font-semibold tracking-wide mb-4">
-                UPCOMING TREK
-              </span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-                Rupin Pass
-              </h2>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="rounded-2xl overflow-hidden card-elevated">
-                <img
-                  src={rupinPassImg}
-                  alt="Rupin Pass Trek"
-                  className="w-full aspect-[4/3] object-cover"
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                />
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-3">
-                  <span className="badge-difficulty badge-moderate">Moderate-Difficult</span>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Rupin Pass is one of the most stunning crossover treks in India. 
-                  Known for its dramatic waterfalls, hanging villages, and snow bridges, this trek offers an unforgettable Himalayan experience.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="w-4 h-4 text-accent" />
-                    Himachal Pradesh
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <TrendingUp className="w-4 h-4 text-accent" />
-                    15,250 ft
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 text-accent" />
-                    May 23rd - May 28th
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Mountain className="w-4 h-4 text-accent" />
-                    6 Days
-                  </div>
-                  {/* WhatsApp */}
-                  <a
-                    href="https://chat.whatsapp.com/I7Zrv6AxdeZKONFBc4zObA?mode=gi_t"
-                    target="_blank"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent"
-                  >
-                    <MessageCircle className="w-4 h-4 text-accent" />
-                    WhatsApp Group
-                  </a>
-                  {/* Google Form */}
-                  <a
-                    href="https://forms.gle/M4UDP2nbBEFsQFjRA"
-                    target="_blank"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent"
-                  >
-                    <FileText className="w-4 h-4 text-accent" />
-                    Register Here
-                  </a>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Mountain className="w-4 h-4 text-accent" />
-                    5km in 35 mins
-                  </div>
-                <Button onClick={() => setBookOpen(true)} variant="accent" size="lg" className="mt-2">
-                  Book Your Slot
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <BookSlotDialog open={bookOpen} onOpenChange={setBookOpen} trekSlug="rupin-pass" trekName="Rupin Pass" />
       </section>
 
       {/* Featured Treks */}

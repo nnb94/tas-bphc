@@ -1,0 +1,3 @@
+- [ ] Remove upcoming Rupin feature and list it with past treks, including difficulty filter.
+- [ ] Replace PoRs and remove their duplicate team entries.
+- [ ] Enable Google sign-in while retaining member profiles.
