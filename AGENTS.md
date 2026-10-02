@@ -1,0 +1,1 @@
+- Use Lovable-managed Google OAuth through the generated auth wrapper, alongside the existing email sign-in; this keeps provider handoff compatible with the embedded preview.

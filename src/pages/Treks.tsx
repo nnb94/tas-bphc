@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { MapPin, TrendingUp, Clock, Calendar, Mountain, ChevronRight, X } from "lucide-react";
+import { MapPin, TrendingUp, Clock, Calendar, ChevronRight, X } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BookSlotDialog from "@/components/BookSlotDialog";
 import FavoriteButton from "@/components/FavoriteButton";
 import heroImg from "@/assets/hero-mountains.jpg";
 import kedarkanthaImg from "@/assets/kedarkantha.jpeg";
@@ -15,14 +14,13 @@ import sarPassImg from "@/assets/sar/sar4.jpeg";
 import kuariImg from "@/assets/kuari-pass.png";
 import bhriguImg from "@/assets/bhrigu-lake.jpeg";
 import rupinPassImg from "@/assets/rupin-pass.jpg";
-import { MessageCircle, FileText } from "lucide-react";
 
 interface Trek {
   id: string;
   name: string;
   image: string;
   location: string;
-  difficulty: "Easy" | "Easy-Moderate" | "Moderate" | "Difficult";
+  difficulty: "Easy" | "Easy-Moderate" | "Moderate" | "Moderate-Difficult" | "Difficult";
   altitude: string;
   duration: string;
   season: string;
@@ -33,6 +31,19 @@ interface Trek {
 }
 
 const treks: Trek[] = [
+  {
+    id: "rupin-pass",
+    name: "Rupin Pass",
+    image: rupinPassImg,
+    location: "Himachal Pradesh",
+    difficulty: "Moderate-Difficult",
+    altitude: "15,250 ft",
+    duration: "6 Days",
+    season: "May - Jun",
+    description: "Rupin Pass is one of the most stunning crossover treks in India. Known for its dramatic waterfalls, hanging villages, and snow bridges, this trek offers an unforgettable Himalayan experience.",
+    highlights: ["Dramatic waterfalls", "Snow bridges", "Hanging villages", "Crossover trek"],
+    fitnessLevel: "5km in 35 mins",
+  },
   {
     id: "kedarkantha",
     name: "Kedarkantha",
@@ -136,7 +147,6 @@ const treks: Trek[] = [
 const Treks = () => {
   const [selectedTrek, setSelectedTrek] = useState<Trek | null>(null);
   const [filter, setFilter] = useState<string>("all");
-  const [bookOpen, setBookOpen] = useState(false);
 
   const filteredTreks = filter === "all"
     ? treks
@@ -166,101 +176,13 @@ const Treks = () => {
         </div>
       </section>
 
-      {/* Upcoming Trek */}
-      <section className="section-padding bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <div className="text-center mb-8">
-              <span className="inline-block px-6 py-2.5 rounded-full bg-accent/10 text-accent text-lg font-semibold tracking-wide mb-4">
-                UPCOMING TREK
-              </span>
-              <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground">
-                Rupin Pass
-              </h2>
-            </div>
-            
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="rounded-2xl overflow-hidden card-elevated">
-                <img
-                  src={rupinPassImg}
-                  alt="Rupin Pass Trek"
-                  className="w-full aspect-[4/3] object-cover"
-                  loading="lazy"
-                  width={1024}
-                  height={768}
-                />
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-3">
-                  <span className="badge-difficulty badge-moderate">Moderate-Difficult</span>
-                </div>
-                <p className="text-muted-foreground leading-relaxed">
-                  Rupin Pass is one of the most stunning crossover treks in India. 
-                  Known for its dramatic waterfalls, hanging villages, and snow bridges, this trek offers an unforgettable Himalayan experience.
-                </p>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <MapPin className="w-4 h-4 text-accent" />
-                    Himachal
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <TrendingUp className="w-4 h-4 text-accent" />
-                    15,250 ft
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Calendar className="w-4 h-4 text-accent" />
-                    May 23rd - May 28th
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Mountain className="w-4 h-4 text-accent" />
-                    6 Days
-                  </div>
-                  {/* WhatsApp */}
-                  <a
-                    href="https://chat.whatsapp.com/I7Zrv6AxdeZKONFBc4zObA?mode=gi_t"
-                    target="_blank"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent"
-                  >
-                    <MessageCircle className="w-4 h-4 text-accent" />
-                    WhatsApp Group
-                  </a>
-                  {/* Google Form */}
-                  <a
-                    href="https://forms.gle/M4UDP2nbBEFsQFjRA"
-                    target="_blank"
-                    className="flex items-center gap-2 text-sm text-muted-foreground hover:text-accent"
-                  >
-                    <FileText className="w-4 h-4 text-accent" />
-                    Register Here
-                  </a>
-                </div>
-                <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Mountain className="w-4 h-4 text-accent" />
-                    5km in 35 mins
-                  </div>
-                <div className="flex flex-wrap gap-2">
-                  {["Dramatic waterfalls", "Snow bridges", "Hanging villages", "Crossover trek"].map((h) => (
-                    <span key={h} className="px-3 py-1 rounded-full bg-accent/10 text-accent text-sm font-medium">{h}</span>
-                  ))}
-                </div>
-                <Button onClick={() => setBookOpen(true)} variant="accent" size="lg" className="w-full md:w-auto mt-2">
-                  Book Your Slot
-                </Button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <BookSlotDialog open={bookOpen} onOpenChange={setBookOpen} trekSlug="rupin-pass" trekName="Rupin Pass" />
-      </section>
-
       {/* Filters */}
       <section className="py-8 bg-muted border-b border-border">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap items-center justify-center gap-3">
             <span className="text-sm text-muted-foreground mr-2">Filter by difficulty:</span>
-            {["all", "Easy-Moderate", "Moderate"].map((option) => (
-              <button
+            {["all", "Easy-Moderate", "Moderate", "Moderate-Difficult"].map((option) => (
+              <Button type="button" variant="ghost" size="sm"
                 key={option}
                 onClick={() => setFilter(option)}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
@@ -270,7 +192,7 @@ const Treks = () => {
                 }`}
               >
                 {option === "all" ? "All Treks" : option}
-              </button>
+              </Button>
             ))}
           </div>
         </div>

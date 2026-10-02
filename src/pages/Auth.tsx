@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { Mountain, Mail, Lock, User as UserIcon, Loader2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { supabase } from "@/integrations/supabase/client";
+import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 
@@ -28,6 +29,21 @@ const Auth = () => {
   const [mode, setMode] = useState<"signin" | "signup" | "forgot">("signin");
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({ fullName: "", email: "", password: "" });
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      const result = await lovable.auth.signInWithOAuth("google", {
+        redirect_uri: window.location.origin,
+      });
+      if (result.error) toast.error(result.error.message);
+      else if (!result.redirected) navigate("/dashboard");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Could not sign in with Google.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     if (user) navigate("/dashboard", { replace: true });
@@ -135,6 +151,18 @@ const Auth = () => {
               {mode === "signin" ? "Sign In" : mode === "signup" ? "Create Account" : "Send Reset Link"}
             </Button>
           </form>
+
+          {mode !== "forgot" && (
+            <div className="mt-5">
+              <div className="flex items-center gap-3 mb-5 text-xs text-muted-foreground">
+                <span className="h-px flex-1 bg-border" />or<span className="h-px flex-1 bg-border" />
+              </div>
+              <Button type="button" variant="outline" size="lg" className="w-full" onClick={handleGoogleSignIn} disabled={loading}>
+                {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+                Continue with Google
+              </Button>
+            </div>
+          )}
 
           <div className="mt-6 text-center text-sm text-muted-foreground space-y-2">
             {mode === "signin" && (
